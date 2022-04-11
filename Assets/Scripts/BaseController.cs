@@ -5,8 +5,8 @@ using Object = UnityEngine.Object;
 
 internal abstract class BaseController : IDisposable
 {
-    private List<BaseController> _baseControllers;
-    private List<GameObject> _gameObjects;
+    private List<BaseController> _baseControllers = new List<BaseController>();
+    private List<GameObject> _gameObjects = new List<GameObject>();
     private bool _isDisposed;
 
     public void Dispose()
@@ -18,28 +18,25 @@ internal abstract class BaseController : IDisposable
 
         OnDispose();
 
-        if (_baseControllers != null)
+        foreach (BaseController controller in _baseControllers)
         {
-            foreach (BaseController controller in _baseControllers)
-            {
-                controller?.Dispose();
-            }
-            _baseControllers.Clear();
+            controller?.Dispose();
         }
+        _baseControllers.Clear();
 
-        if (_gameObjects != null)
+        foreach (GameObject cachedGameObject in _gameObjects)
         {
-            foreach (GameObject cachedGameObject in _gameObjects)
+            if (cachedGameObject != null)
             {
                 Object.Destroy(cachedGameObject);
             }
-            _gameObjects.Clear();
         }
+        _gameObjects.Clear();
     }
 
     protected virtual void OnDispose()
     {
-        //TODO smth
+
     }
 
     protected void AddController(BaseController controller)

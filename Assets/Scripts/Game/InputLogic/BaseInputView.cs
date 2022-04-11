@@ -17,11 +17,6 @@ namespace Game.InputLogic
             _speed = speed;
         }
 
-        internal void LoadView()
-        {
-            throw new NotImplementedException();
-        }
-
         protected virtual void OnLeftMove(float value)
         {
             _leftMove.Value = value;

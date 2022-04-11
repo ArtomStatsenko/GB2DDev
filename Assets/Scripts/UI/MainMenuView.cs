@@ -9,9 +9,9 @@ namespace UI
         [SerializeField]
         private Button _startButton;
 
-        public void Init(UnityAction startGame)
+        public void Init(UnityAction start)
         {
-            _startButton.onClick.AddListener(startGame);
+            _startButton.onClick.AddListener(start);
         }
 
         public void OnDestroy()

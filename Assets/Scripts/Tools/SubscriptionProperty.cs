@@ -22,7 +22,7 @@ namespace Tools
             _onChangeValue += subscritionAction;
         }
 
-        public void UnsbscriptionOnChange(Action<T> unsubscriptionAction)
+        public void UnsubscribeOnChange(Action<T> unsubscriptionAction)
         {
             _onChangeValue -= unsubscriptionAction;
         }

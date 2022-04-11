@@ -7,26 +7,26 @@ namespace UI
     internal class MainMenuController : BaseController
     {
         private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/mainMenu" };
-        private readonly ProfilePlayer _profilePlayer;
+        private readonly PlayerData _model;
         private MainMenuView _view;
 
-        public MainMenuController(Transform placeForUI, ProfilePlayer profilePlayer)
+        public MainMenuController(PlayerData model, Transform uiRoot)
         {
-            _profilePlayer = profilePlayer;
-            _view = LoadView(placeForUI);
+            _model = model;
+            _view = CreateView(uiRoot);
             _view.Init(StartGame);
         }
 
-        private MainMenuView LoadView(Transform placeForUI)
+        private MainMenuView CreateView(Transform uiRoot)
         {
-            GameObject viewObject = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUI, false);
+            GameObject viewObject = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), uiRoot, false);
             AddGameObject(viewObject);
             return viewObject.GetComponent<MainMenuView>();
         }
 
         private void StartGame()
         {
-            _profilePlayer.CurrentState.Value = GameState.Game;
+            _model.GameState.Value = GameState.Game;
         }
     }
 }

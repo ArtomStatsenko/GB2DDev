@@ -8,6 +8,6 @@ namespace Tools
 
         void SubscribeOnChange(Action<T> subscritionAction);
 
-        void UnsbscriptionOnChange(Action<T> unsubscriptionAction);
+        void UnsubscribeOnChange(Action<T> unsubscriptionAction);
     }
 }
