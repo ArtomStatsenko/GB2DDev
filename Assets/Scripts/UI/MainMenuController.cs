@@ -31,6 +31,7 @@ namespace UI
         private void StartGame()
         {
             _model.GameState.Value = GameState.Game;
+            _model.AnalyticTool.SendMessage("start_game");
         }
 
         private TrailTouchView CreateTrailView(Transform uiRoot)
