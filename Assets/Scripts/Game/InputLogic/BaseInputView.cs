@@ -1,5 +1,4 @@
-﻿using System;
-using Tools;
+﻿using Tools;
 using UnityEngine;
 
 namespace Game.InputLogic
@@ -8,13 +7,11 @@ namespace Game.InputLogic
     {
         private SubscriptionProperty<float> _leftMove;
         private SubscriptionProperty<float> _rightMove;
-        private float _speed;
 
-        public void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
+        public virtual void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
         {
             _leftMove = leftMove;
             _rightMove = rightMove;
-            _speed = speed;
         }
 
         protected virtual void OnLeftMove(float value)
