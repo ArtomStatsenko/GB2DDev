@@ -1,4 +1,5 @@
 using Profile;
+using Profile.Analytic;
 using UnityEngine;
 
 internal class Root : MonoBehaviour
@@ -12,7 +13,7 @@ internal class Root : MonoBehaviour
 
     private void Start()
     {
-        PlayerData model = new PlayerData(_carSpeed);
+        PlayerData model = new PlayerData(_carSpeed, new UnityAnalyticTools());
         model.GameState.Value = GameState.Game;
 
         _controller = new MainController(model, _uiRoot);
