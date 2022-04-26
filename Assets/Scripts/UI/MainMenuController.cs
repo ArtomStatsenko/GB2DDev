@@ -1,4 +1,5 @@
 ﻿using Profile;
+using System.Linq;
 using Tools;
 using UnityEngine;
 
@@ -6,40 +7,44 @@ namespace UI
 {
     internal class MainMenuController : BaseController
     {
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/mainMenu" };
-        private readonly ResourcePath _trailViewPath = new ResourcePath { PathResource = "Prefabs/trailTouch" };
-        private readonly PlayerData _model;
+        private readonly PlayerData _profilePlayer;
         private readonly MainMenuView _view;
-        private readonly TrailTouchView _trailView;
 
-        public MainMenuController(PlayerData model, Transform uiRoot)
+        public MainMenuController(Transform placeForUi, PlayerData profilePlayer)
         {
-            _model = model;
-            _view = CreateView(uiRoot);
+            _profilePlayer = profilePlayer;
+            _view = ResourceLoader.LoadAndInstantiateObject<MainMenuView>(new ResourcePath { PathResource = "Prefabs/mainMenu" }, placeForUi, false);
+            AddGameObject(_view.gameObject);
             _view.Init(StartGame);
-            _trailView = CreateTrailView(uiRoot);
-            _trailView.Init();
+            var shedController = ConfigureShedController(placeForUi, profilePlayer);
         }
-       
-        private MainMenuView CreateView(Transform uiRoot)
+
+        private BaseController ConfigureShedController(Transform placeForUi, PlayerData profilePlayer)
         {
-            GameObject viewObject = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), uiRoot, false);
-            AddGameObject(viewObject);
-            return viewObject.GetComponent<MainMenuView>();
+            var upgradeItemsConfigCollection
+            = ContentDataSourceLoader.LoadUpgradeItemConfigs(new ResourcePath
+            {
+                PathResource
+            = "DataSource/Upgrade/UpgradeItemConfigDataSource"
+            });
+            var upgradeItemsRepository = new UpgradeHandlersRepository(upgradeItemsConfigCollection);
+            var itemsRepository = new ItemsRepository(upgradeItemsConfigCollection.Select(value => value.ItemConfig).ToList());
+            var inventoryModel = new InventoryModel();
+            var inventoryViewPath = new ResourcePath { PathResource = $"Prefabs/{nameof(InventoryView)}" };
+            var inventoryView = ResourceLoader.LoadAndInstantiateObject<InventoryView>(inventoryViewPath, placeForUi, false);
+            AddGameObject(inventoryView.gameObject);
+            var inventoryController = new InventoryController(inventoryModel,  inventoryView, itemsRepository);
+            AddController(inventoryController);
+            var shedController = new ShedController(upgradeItemsRepository, inventoryController,
+            profilePlayer.CurrentCar);
+            AddController(shedController);
+            return shedController;
         }
 
         private void StartGame()
         {
-            _model.GameState.Value = GameState.Game;
-            _model.AnalyticTool.SendMessage("start_game");
+            _profilePlayer.GameState.Value = GameState.Game;
+            _profilePlayer.AnalyticTool.SendMessage("start_game");
         }
-
-        private TrailTouchView CreateTrailView(Transform uiRoot)
-        {
-            GameObject viewObject = Object.Instantiate(ResourceLoader.LoadPrefab(_trailViewPath), uiRoot, false);
-            AddGameObject(viewObject);
-            return viewObject.GetComponent<TrailTouchView>();
-        }
-
     }
 }

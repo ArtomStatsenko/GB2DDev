@@ -9,6 +9,7 @@ internal class ContentDataSourceLoader
         var config = ResourceLoader.LoadObject<UpgradeItemConfigDataSource>(resourcePath);
         return config == null ? new List<UpgradeItemConfig>() : config.ItemConfigs.ToList();
     }
+
     public static List<AbilityItemConfig> LoadAbilityItemConfigs(ResourcePath resourcePath)
     {
         var config = ResourceLoader.LoadObject<AbilityItemConfigDataSource>(resourcePath);

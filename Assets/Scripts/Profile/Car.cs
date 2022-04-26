@@ -9,6 +9,7 @@
         public Car(float speed)
         {
             _defaultSpeed = speed;
+            Restore();
         }
 
         public void Restore()

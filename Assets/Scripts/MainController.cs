@@ -41,12 +41,12 @@ internal class MainController : BaseController
 
     private MainMenuController CreateMenuController()
     {
-        return new MainMenuController(_model, _uiRoot);
+        return new MainMenuController(_uiRoot, _model);
     }
 
     private GameController CreateGameController()
     {
-        return new GameController(_model);
+        return new GameController(_uiRoot, _model);
     }
 
     protected override void OnDispose()

@@ -1,6 +1,7 @@
 ﻿using Game.InputLogic;
 using Profile;
 using Tools;
+using UnityEngine;
 
 internal class GameController : BaseController
 {
@@ -9,7 +10,7 @@ internal class GameController : BaseController
     private InputController _input;
     private BackgroundController _background;
 
-    public GameController(PlayerData model)
+    public GameController(Transform placeForUi, PlayerData model)
     {
         _model = model;
 
@@ -23,5 +24,22 @@ internal class GameController : BaseController
 
         BackgroundController backgroundController = new BackgroundController(movement, _model.CurrentCar.Speed);
         AddController(backgroundController);
+        var abilityController = ConfigureAbilityController(placeForUi, carController);
+    }
+
+    private IAbilitiesController ConfigureAbilityController(Transform placeForUi, IAbilityActivator abilityActivator)
+    {
+        var abilityItemsConfigCollection = ContentDataSourceLoader.LoadAbilityItemConfigs(new ResourcePath
+        {
+            PathResource = "DataSource/Ability/AbilityItemConfigDataSource"
+        });
+        var abilityRepository = new AbilityRepository(abilityItemsConfigCollection);
+        var abilityCollectionViewPath = new ResourcePath { PathResource = $"Prefabs/{nameof(AbilityCollectionView)}" };
+        var abilityCollectionView = ResourceLoader.LoadAndInstantiateObject<AbilityCollectionView>(abilityCollectionViewPath, placeForUi, false);
+        AddGameObject(abilityCollectionView.gameObject);
+        var inventoryModel = new InventoryModel();
+        var abilitiesController = new AbilitiesController(abilityRepository, inventoryModel, abilityCollectionView, abilityActivator);
+        AddController(abilitiesController);
+        return abilitiesController;
     }
 }

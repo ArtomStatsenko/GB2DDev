@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Company.Project.Features.Abilities
+
+public class AbilityCollectionView : MonoBehaviour, IAbilityCollectionView
 {
-    public class AbilityCollectionView : MonoBehaviour, IAbilityCollectionView
+    public event EventHandler<IItem> UseRequested;
+
+    private IReadOnlyList<IItem> _abilityItems;
+
+    protected virtual void OnUseRequested(IItem e)
     {
-        public event EventHandler<IItem> UseRequested;
+        UseRequested?.Invoke(this, e);
+    }
 
-        private IReadOnlyList<IItem> _abilityItems;
+    public void Display(IReadOnlyList<IItem> abilityItems)
+    {
+        _abilityItems = abilityItems;
+    }
 
-        protected virtual void OnUseRequested(IItem e)
-        {
-            UseRequested?.Invoke(this, e);
-        }
-
-        public void Display(IReadOnlyList<IItem> abilityItems)
-        {
-            _abilityItems = abilityItems;
-        }
-
-        public void Show()
-        {
-        }
-        public void Hide()
-        {
-        }
+    public void Show()
+    {
+    }
+    public void Hide()
+    {
     }
 }

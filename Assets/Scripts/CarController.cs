@@ -3,21 +3,30 @@ using UnityEngine;
 
 namespace Profile
 {
-    internal class CarController : BaseController
+    internal class CarController : BaseController, IAbilityActivator
     {
-        private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Car" };
-        private CarView _view;
+        private readonly ResourcePath _viewPath = new ResourcePath
+        {
+            PathResource = "Prefabs/Car"
+        };
+
+        private readonly CarView _carView;
 
         public CarController()
         {
-            _view = CreateView();
+            _carView = LoadView();
         }
 
-        private CarView CreateView()
+        private CarView LoadView()
         {
-            GameObject view = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath));
-            AddGameObject(view);
-            return view.GetComponent<CarView>();
+            GameObject objView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath));
+            AddGameObject(objView);
+            return objView.GetComponent<CarView>();
+        }
+
+        public GameObject GetViewObject()
+        {
+            return _carView.gameObject;
         }
     }
 }
