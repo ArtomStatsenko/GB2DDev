@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae0554b9f48b024b989a51f8d84d319, type: 3}
   m_Name: CannonGun
   m_EditorClassIdentifier: 
-  ItemConfig: {fileID: 0}
+  ItemConfig: {fileID: 11400000, guid: 85bc070ec91129240834599feb292a12, type: 2}
   View: {fileID: 0}
-  type: 0
-  value: 0
+  type: 1
+  value: 1000

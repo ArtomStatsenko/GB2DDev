@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b119ef3e1fcb0494889942e483436105, type: 3}
   m_Name: Cannon
   m_EditorClassIdentifier: 
-  Id: 0
-  Title: 
+  Id: 1
+  Title: Cannon
