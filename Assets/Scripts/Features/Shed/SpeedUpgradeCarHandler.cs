@@ -1,4 +1,4 @@
-﻿internal class SpeedUpgradeCarHandler : IUpgradeCarHandler
+﻿internal class SpeedUpgradeCarHandler : IUpgradeHandler
 {
     private readonly float _speed;
 
@@ -7,7 +7,7 @@
         _speed = speed;
     }
 
-    public IUpgradableCar Upgrade(IUpgradableCar upgradableCar)
+    public IUpgradable Upgrade(IUpgradable upgradableCar)
     {
         upgradableCar.Speed = _speed;
         return upgradableCar;

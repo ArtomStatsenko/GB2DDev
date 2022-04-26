@@ -1,4 +1,4 @@
-﻿public interface IUpgradableCar
+﻿public interface IUpgradable
 {
     float Speed { get; set; }
     void Restore();

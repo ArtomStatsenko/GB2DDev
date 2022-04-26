@@ -23,4 +23,11 @@ public class InventoryView : MonoBehaviour, IInventoryView
     {
         Deselected?.Invoke(this, e);
     }
+
+    public void Show()
+    {
+    }
+    public void Hide()
+    {
+    }
 }

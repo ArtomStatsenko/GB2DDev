@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-internal class UpgradeHandlersRepository : BaseController
+internal class UpgradeHandlersRepository : BaseController, IRepository<int, IUpgradeHandler>
 {
-    private Dictionary<int, IUpgradeCarHandler> _upgradeItemsMapById = new Dictionary<int, IUpgradeCarHandler>();
+    private Dictionary<int, IUpgradeHandler> _upgradeItemsMapById = new Dictionary<int, IUpgradeHandler>();
 
-    public IReadOnlyDictionary<int, IUpgradeCarHandler> UpgradeItems => _upgradeItemsMapById;
+    public IReadOnlyDictionary<int, IUpgradeHandler> Collection => _upgradeItemsMapById;
 
     public UpgradeHandlersRepository(List<UpgradeItemConfig> itemConfigs)
     {
@@ -18,7 +18,7 @@ internal class UpgradeHandlersRepository : BaseController
         _upgradeItemsMapById = null;
     }
 
-    private void PopulateItems(ref Dictionary<int, IUpgradeCarHandler> upgradeItemsMapByType, List<UpgradeItemConfig> configs)
+    private void PopulateItems(ref Dictionary<int, IUpgradeHandler> upgradeItemsMapByType, List<UpgradeItemConfig> configs)
     {
         foreach (var config in configs)
         {
@@ -31,7 +31,7 @@ internal class UpgradeHandlersRepository : BaseController
         }
     }
 
-    private IUpgradeCarHandler CreateHandlerByType(UpgradeItemConfig config)
+    private IUpgradeHandler CreateHandlerByType(UpgradeItemConfig config)
     {
         switch (config.Type)
         {
