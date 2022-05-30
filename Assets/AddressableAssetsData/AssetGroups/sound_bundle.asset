@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: sound_bundle
+  m_EditorClassIdentifier: 
+  m_GroupName: sound_bundle
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b82fda491efd66b4a8f089b5c2f49af4
+  m_SerializeEntries:
+  - m_GUID: ea0af1049851ddd44af7c7d373421f26
+    m_Address: Assets/Sound/golos-knopka.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a549bf0a5124c8942a50ce7ec3d7763b
+    m_Address: Assets/Sound/wova-_-z_uki_-mehanizmy-nazhatie-na-knopku.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b993ca982796d0d48b407e5d43cc08c9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a815d4adb5351cd46b228e9364d7ecd8, type: 2}
+    - {fileID: 11400000, guid: be09bac1fb2021641a4557bfbdf3b51d, type: 2}

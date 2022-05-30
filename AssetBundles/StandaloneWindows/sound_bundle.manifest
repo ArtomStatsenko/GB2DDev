@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 51735410
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c5e27be27a81730e2ca96c95a1a134c8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Sound/golos-knopka.mp3
+- Assets/Sound/wova-_-z_uki_-mehanizmy-nazhatie-na-knopku.mp3
+Dependencies: []

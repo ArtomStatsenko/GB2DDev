@@ -24,14 +24,19 @@ UnityConnectSettings:
     m_TestMode: 0
     m_InitializeOnStartup: 1
   UnityAdsSettings:
-    m_Enabled: 1
+    m_Enabled: 0
     m_InitializeOnStartup: 1
     m_TestMode: 1
     m_IosGameId: 
     m_AndroidGameId: 
+<<<<<<< Updated upstream
     m_GameIds:
       AndroidPlayer: 4703650
       iPhonePlayer: 4703651
     m_GameId: 4703650
+=======
+    m_GameIds: {}
+    m_GameId: 
+>>>>>>> Stashed changes
   PerformanceReportingSettings:
     m_Enabled: 0
